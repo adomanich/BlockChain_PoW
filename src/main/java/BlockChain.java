@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class BlockChain {
 
@@ -10,8 +11,8 @@ public class BlockChain {
     }
 
     public BlockChain buildNewBlock(String[] data) {
-        Block prevBlock = this.getLastBlockFromChain();
-        String blockToBuildPrevHash = prevBlock == null ? "" : prevBlock.getHash();
+        Optional<Block> prevBlock = this.getLastBlockFromChain();
+        String blockToBuildPrevHash = prevBlock.isPresent() ? prevBlock.get().getHash() : "";
         Block potentiallyNewBlock = new Block(blockToBuildPrevHash, data);
 
         String hash = HashManager.calculateHash(potentiallyNewBlock.toString());
@@ -30,11 +31,11 @@ public class BlockChain {
         return this.blockchain;
     }
 
-    private Block getLastBlockFromChain() {
+    private Optional<Block> getLastBlockFromChain() {
         if (this.blockchain.size() > 0) {
-            return blockchain.get(this.blockchain.size() - 1);
+            return Optional.of(blockchain.get(this.blockchain.size() - 1));
         } else {
-            return null;
+            return Optional.empty();
         }
     }
 }
