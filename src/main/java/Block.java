@@ -1,10 +1,12 @@
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.Arrays;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 public class Block {
 
     private String prevHash;
@@ -20,22 +22,6 @@ public class Block {
 
     public void changeNonce() {
         this.nonce++;
-    }
-
-    public String getPrevHash() {
-        return prevHash;
-    }
-
-    public String getHash() {
-        return hash;
-    }
-
-    public int getNonce() {
-        return nonce;
-    }
-
-    public String[] getData() {
-        return data;
     }
 
     public void setCalculatedHash(String hash) {

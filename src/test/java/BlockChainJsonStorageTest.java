@@ -14,10 +14,12 @@ public class BlockChainJsonStorageTest {
         String[] dataForFirstBlock = dataGenerator.getTransactions();
         String[] dataForSecondBlock = dataGenerator.getTransactions();
         String[] dataForThirdBlock = dataGenerator.getTransactions();
+        String[] dataForFourthBlock = dataGenerator.getTransactions();
 
         blockChain.buildNewBlock(dataForFirstBlock)
                 .buildNewBlock(dataForSecondBlock)
-                .buildNewBlock(dataForThirdBlock);
+                .buildNewBlock(dataForThirdBlock)
+                .buildNewBlock(dataForFourthBlock);
 
         Parser.parseBlockChainListToJson(blockChain);
     }
